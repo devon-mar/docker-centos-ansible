@@ -20,6 +20,11 @@ RUN yum -y update \
     && yum -y install ansible \
     && yum clean all
 
+# Install docker-ce-cli
+RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
+    && yum install -y docker-ce-cli \
+    && yum clean all
+
 # Install molecule
 RUN pip3 install molecule[docker]
 
