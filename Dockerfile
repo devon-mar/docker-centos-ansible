@@ -25,7 +25,7 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
     && yum install -y docker-ce-cli \
     && yum clean all
 
-# Install molecule
-RUN pip3 install molecule[docker]
+# Install python packages
+RUN pip3 install ansible-lint yamllint molecule[docker] 
 
 CMD ["/usr/sbin/init"]
