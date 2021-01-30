@@ -26,6 +26,6 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
     && yum clean all
 
 # Install python packages
-RUN pip3 install ansible-lint yamllint molecule[docker] docker-compose
+RUN pip3 install ansible-lint yamllint molecule[docker] docker-compose netaddr
 
 CMD ["/usr/sbin/init"]
