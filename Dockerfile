@@ -17,7 +17,6 @@ VOLUME [ "/sys/fs/cgroup" ]
 # Use ansible from the CentOS repo
 RUN yum -y update \
     && yum -y install yum-utils git python3 python3-pip epel-release \
-    && yum -y install ansible \
     && yum clean all
 
 # Install docker-ce-cli
@@ -29,6 +28,6 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
 # pip3 install --upgrade pip: https://github.com/Azure/azure-cli/issues/16858
 # --ignore-installed: ERROR: Cannot uninstall 'PyYAML'. It is a distutils installed project and thus we cannot accurately determine which files belong to it
 RUN pip3 install --upgrade pip \
-    && pip3 install --ignore-installed ansible-lint~=4.0 yamllint molecule[docker] docker-compose netaddr
+    && pip3 install --ignore-installed ansible~=2.10 ansible-lint~=4.0 yamllint molecule[docker] docker-compose netaddr
 
 CMD ["/usr/sbin/init"]
