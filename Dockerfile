@@ -16,7 +16,7 @@ VOLUME [ "/sys/fs/cgroup" ]
 
 # Use ansible from the CentOS repo
 RUN yum -y update \
-    && yum -y install yum-utils git python3 python3-pip epel-release \
+    && yum -y install yum-utils git python38 python38-pip epel-release \
     && yum clean all
 
 # Install docker-ce-cli
@@ -29,5 +29,4 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
 RUN pip3 install --upgrade pip \
     && pip3 install ansible~=4.0 ansible-lint~=5.0 yamllint molecule[docker] docker-compose netaddr
 
-RUN ansible-galaxy collection install community.general:3.1.0 netbox.netbox:3.1.1 cisco.ios:2.2.0 vyos.vyos:2.4.0 community.crypto:1.7.0
 CMD ["/usr/sbin/init"]
