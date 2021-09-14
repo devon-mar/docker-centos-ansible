@@ -14,9 +14,10 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup" ]
 
-# Use ansible from the CentOS repo
+# Need GCC and Make for pynacl build
+# https://github.com/pyca/pynacl/issues/601
 RUN yum -y update \
-    && yum -y install yum-utils git python38 python38-pip epel-release \
+    && yum -y install yum-utils git python38 python38-pip epel-release gcc make \
     && yum clean all
 
 # Install docker-ce-cli
