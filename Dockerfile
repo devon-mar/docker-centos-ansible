@@ -27,7 +27,7 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
 
 # Install python packages
 # pip3 install --upgrade pip: https://github.com/Azure/azure-cli/issues/16858
-RUN pip3 install --upgrade pip \
-    && pip3 install ansible~=5.0 ansible-lint~=5.0 yamllint molecule[docker] docker-compose netaddr
+RUN pip3 install --no-cache-dir --upgrade pip \
+    && pip3 install --no-cache-dir ansible~=5.0 ansible-lint~=5.0 yamllint molecule[docker] docker-compose netaddr
 
 CMD ["/usr/sbin/init"]
