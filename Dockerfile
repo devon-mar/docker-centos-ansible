@@ -17,7 +17,7 @@ VOLUME [ "/sys/fs/cgroup" ]
 # Need GCC and Make for pynacl build
 # https://github.com/pyca/pynacl/issues/601
 RUN yum -y update \
-    && yum -y install yum-utils findutils git unzip  python38 python38-pip python38-wheel epel-release gcc make python38-devel \
+    && yum -y install yum-utils findutils git unzip python39 python38-pip python39-wheel epel-release gcc make python39-devel \
     && yum clean all
 
 # Install docker-ce-cli
@@ -28,6 +28,6 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
 # Install python packages
 # pip3 install --upgrade pip: https://github.com/Azure/azure-cli/issues/16858
 RUN pip3 install --no-cache-dir --upgrade pip \
-    && pip3 install --no-cache-dir ansible~=6.0 ansible-lint~=6.0 yamllint molecule[docker] docker-compose netaddr
+    && pip3 install --no-cache-dir ansible~=6.0 ansible-lint~=6.0 yamllint molecule docker-compose netaddr
 
 CMD ["/usr/sbin/init"]
