@@ -4,15 +4,18 @@
 name: Dependabot auto-merge
 on: pull_request
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   dependabot:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
+      - name: Generate a token
+        id: generate_token
+        uses: tibdex/github-app-token@c2055a00597a80f713b78b1650e8d3418f4d9a65
+        with:
+          app_id: ${{ secrets.AUTO_MERGE_APP_ID }}
+          private_key: ${{ secrets.AUTO_MERGE_APP_PRIVATE_KEY }}
+
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v1
@@ -22,5 +25,5 @@ jobs:
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --merge "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
