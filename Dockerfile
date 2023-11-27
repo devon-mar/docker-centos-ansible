@@ -17,7 +17,7 @@ VOLUME [ "/sys/fs/cgroup" ]
 # Need GCC and Make for pynacl build
 # https://github.com/pyca/pynacl/issues/601
 RUN yum -y update \
-    && yum -y install yum-utils findutils git unzip python39 python38-pip python39-wheel epel-release gcc make python39-devel \
+    && yum -y install yum-utils findutils git unzip python3.11 python3.11-pip python3.11-wheel python3.11-devel epel-release gcc make \
     && yum clean all
 
 # Install docker-ce-cli
