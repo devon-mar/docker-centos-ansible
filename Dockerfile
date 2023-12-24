@@ -28,6 +28,9 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
 # Install python packages
 COPY requirements.txt .
 
-RUN pip3 install --no-cache-dir -r requirements.txt
+# https://github.com/yaml/pyyaml/issues/724
+RUN pip3 install "cython<3.0.0" \
+    && pip3 install --no-build-isolation pyyaml==5.4.1 \
+    && pip3 install --no-cache-dir -r requirements.txt
 
 CMD ["/usr/sbin/init"]
