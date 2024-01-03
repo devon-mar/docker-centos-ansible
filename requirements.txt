@@ -3,4 +3,4 @@ ansible-lint==6.22.1
 yamllint==1.33.0
 molecule==6.0.3
 molecule-plugins[docker]==v23.5.0
-netaddr==0.10.0
+netaddr==0.10.1
