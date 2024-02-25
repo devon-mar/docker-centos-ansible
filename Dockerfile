@@ -17,7 +17,7 @@ VOLUME [ "/sys/fs/cgroup" ]
 # Need GCC and Make for pynacl build
 # https://github.com/pyca/pynacl/issues/601
 RUN yum -y update \
-    && yum -y install yum-utils findutils git unzip python38 python38-pip python3.11 python3.11-pip python3.11-wheel python3.11-devel epel-release gcc make \
+    && yum -y install yum-utils findutils git unzip python3.11 python3.11-pip python3.11-wheel python3.11-devel epel-release gcc make \
     && yum clean all
 
 # Install docker-ce-cli
@@ -26,10 +26,9 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
     && yum clean all
 
 # Install python packages
-COPY requirements.txt requirements-3.8.txt .
+COPY requirements.txt .
 
 # https://github.com/yaml/pyyaml/issues/724
-RUN pip3.8 install --no-cache-dir -r requirements-3.8.txt \
-    && pip3.11 install --no-cache-dir -r requirements.txt
+RUN pip3.11 install --no-cache-dir -r requirements.txt
 
 CMD ["/usr/sbin/init"]
