@@ -1,6 +1,6 @@
 ansible==12.2.0
 # 25.1.3 due to https://github.com/ansible/ansible-lint/issues/4647
-ansible-lint==25.1.3
+ansible-lint==25.9.2
 yamllint==1.37.1
 molecule==25.9.0
 molecule-plugins[docker]==v25.8.12
